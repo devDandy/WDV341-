@@ -7,11 +7,11 @@
 	$inCurrencyFormat = $_POST["currencyFormat"];
 
 	function formatUSAdate($month, $day, $year) {
-		$USAdate = date("m/d/Y");
+		$USAdate = date("m/d/Y", mktime(0, 0, 0, $month, $day, $year));
 		return $USAdate;
 	}
-	function formartIntDate($month, $day, $year) {
-		$intDate = date("d/m/Y");
+	function formatIntDate($month, $day, $year) {
+		$intDate = date("d/m/Y", mktime(0, 0, 0, $month, $day, $year));
 		return $intDate;
 	}
 	function randomText($text){
@@ -103,7 +103,7 @@ h1 {
 
 		<p class="formatRequest">International Date Format: (dd/mm/yyyy)</p>
 
-		<p class="formatAnswer"><?php echo formartIntDate($inMonth,$inDay,$inYear);  ?></p>
+		<p class="formatAnswer"><?php echo formatIntDate($inMonth,$inDay,$inYear);  ?></p>
 
 		<p class="formatRequest">Input Text:</p>
 
@@ -116,7 +116,7 @@ h1 {
 		<p class="formatRequest">USA Currency Format: (e.g $10.50)</p>
 
 		<p class="formatAnswer"><?php echo formatCurrency($inCurrencyFormat); ?></p>
-	<input type="button" name="submit" value="View PHP">
+	<a href="https://github.com/devDandy/WDV341-/blob/master/phpFunctions.php"><input type="button" name="submit" value="View PHP"></a>
 	<a href="phpFunctions.html"><input type="button" name="Reset" value="Back to HTML"></a>
 </div>
 </body>
