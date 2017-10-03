@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Contact Form Processing</title>
+<link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Poppins" rel="stylesheet">
+
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      background: #13232f;
+    }
+    p {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .container {
+      margin: 5em auto;
+      width: 75%;
+    }
+
+    form {
+      margin: auto;
+      width: 50%;
+      padding: 25px;
+      border-radius: 10px;
+      color: white; 
+
+    }
+    .formHeader {
+      background: #1ab188;
+      padding: 15px 20px;
+      border-radius: 4px;
+      font-family: 'Berkshire Swash', cursive;
+      text-align: center;
+      text-shadow: 5px 1px #13232f;
+
+    }
+    input[type="text"],input[type="email"] {
+      width: 100%;
+      background-color: #1ab188;
+      color: #FFF9C4;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 4px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    input[type="text"]:focus,input[type="email"]:focus {
+      background: #21ddaa;
+      border:5px solid black;
+      color: black;
+    }
+
+    select {
+      width: 50%;
+      background-color: #1ab188;
+      color: #FFF9C4;
+      padding: 13px 19px;
+      border: none;
+      border-radius: 4px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    textarea {
+      width: 100%;
+      background-color: #1ab188;
+      color: #FFF9C4;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 4px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+
+
+
+    #submitForm, #resetForm {
+      width: 25%;
+      background-color: #1ab188;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      font-family: 'Raleway', sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+<form action="processContactForm.php" name="contactForm" method="POST" >
+<div class="innerFormContainer">
+<h1 class="formHeader">Programming Project - Contact Form</h1>
+  <p>
+    <label for="recipientName">Your Name:<br>
+      <input type="text" name="recipientName" id="recipientName">
+    </label>
+  </p>
+  <p>
+    <label for="recipientName">Your Email:<br> 
+      <input type="email" name="recipientEmail" id="recipientEmail">
+    </label>
+  </p>
+  <p>Reason for contact:<br>
+    <label>
+      <select name="contactReason" id="contactReason">
+        <option value="default Reason">Please Select a Reason</option>
+        <option value="product Reason">Product Problem</option>
+        <option value="return Reason">Return a Product</option>
+        <option value="billing Reason">Billing Question</option>
+        <option value="technical Reason">Report a Website Problem</option>
+        <option value="other Reason">Other</option>
+      </select>
+    </label>
+  </p>
+  <p>
+    <label for="recipientComment">Comments:<br>
+      <textarea name="recipientComment" id="recipientComment" cols="45" rows="5"></textarea>
+    </label>
+  </p>
+  <p>
+    <label for="mailingList">
+      <input type="checkbox" name="mailingList" id="mailingList" value="Yes" checked>
+      Please put me on your mailing list.</label>
+  </p>
+  <p>
+    <label for="moreInformation">
+      <input type="checkbox" name="moreInformation" id="moreInformation" value="Yes" checked>
+      Send me more information</label>
+  about your products.  </p>
+  <p>
+    <input type="hidden" name="hiddenField" id="hiddenField" value="application-id:US447">
+  </p>
+  <p>
+    <input type="submit" name="submit" id="submitForm" value="Submit">
+    <input type="reset" name="reset" id="resetForm" value="Reset">
+  </p>
+</div> 
+<!-- innerformcontainer -->
+</form>
+
+
+<header>
+  <h1></h1>
+</header>
+  </div>
+</body>
+</html>
