@@ -40,21 +40,14 @@
     }
 
 
-	if(isset($_POST['submit'])) {
-		
+	if(isset($_POST['submit'])) { // Confirmation Message
+		$to = $visitor_email; 
+		$subject = "Confirmation Message - devDandy!";
+		$message ="Thank you for submitting your form from devDandy!\nWe have received your email.";
+
+		mail($to,$subject,$message);
 	}
 
-
-
-
-
-	// if (isset($_POST['submit'])) {
-	//   $confirmationRecipent = $_POST['recipientEmail'];
-	//   $confirmationSubject = "Confirmation Email from Contact Form";
-	//   $confirmationMessage= "Thank you for contacting us!\n We have received your e-mail!";
-
-	//   mail($confirmationRecipent,$confirmationSubject,$confirmationMessage);
-	// }
 	?>
 
 
@@ -62,17 +55,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title><?php echo "Hello World!"?> Contact Form Processing</title>
+	<title>Contact Form Processing</title>
+	<link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Poppins" rel="stylesheet">
+	<style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      background: #13232f;
+    }
+    p {
+    	text-align: center;
+    }
+
+    .container {
+      margin: 5em auto;
+      width: 75%;
+    }
+
+    section {
+      margin: auto;
+      width: 50%;
+      padding: 25px;
+      border-radius: 10px;
+      color: white; 
+
+    }
+    .formHeader {
+      background: #1ab188;
+      padding: 15px 20px;
+      border-radius: 4px;
+      font-family: 'Berkshire Swash', cursive;
+      font-size: 3.5em;
+      text-align: center;
+      text-shadow: 5px 1px #13232f;
+      color: white;
+
+    }
+
+button {
+	display: inline-block;
+    width: 75%;
+    background-color: #FF404E;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+	</style>
 </head>
 <body>
-<h1>Let's see if this works</h1>
-
-
-<?php echo $_POST['recipientName']; ?><br>
-<?php echo $_POST['recipientEmail']?><br>
-<?php echo $_POST['contactReason']?><br>
-<?php echo $_POST['recipientComment']?><br>
-<?php echo $_POST['mailingList']?><br>
-<?php echo $_POST['moreInformation']?><br>
+	  <div class="container">
+		<section>
+			<h1 class="formHeader">Form has been submitted!</h1>
+				<p>
+					<a href="https://github.com/devDandy/WDV341-/tree/master/contactform"><button>View PHP</button></a>
+					<a href="https://devdandy.com/homework/wdv341/contactForm/contactFormProject.html"><button>View Back to Contact Form</button></a>
+				</p>
+		</section>
+	</div>
 </body>
 </html>
