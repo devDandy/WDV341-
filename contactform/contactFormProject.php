@@ -1,5 +1,5 @@
 <?php 
-    error_reporting(E_ERROR | E_PARSE);
+    // error_reporting(E_ERROR | E_PARSE);
     include "Email.php";
 
     $visitor_name = '';
@@ -95,22 +95,58 @@
 
       if ($validForm) {
 
+        try {
+          include 'connectPDO.php';
+
+          $todaysDate = date("Y-m-d");
+
+            $sql = "INSERT INTO customer_contacts (";
+            $sql .= "contact_name, ";
+            $sql .= "contact_email, ";
+            $sql .= "contact_reason, ";
+            $sql .= "contact_comment, ";
+            $sql .= "contact_newsletter, ";
+            $sql .= "contact_more_products ";
+            $sql .= ") VALUES (:contact_name, :contact_email, :contact_reason, :contact_comment, :contact_newsletter, :contact_more_products)";
+
+          $stmt = $conn->prepare($sql);
+
+          //BIND the values to the input parameters of the prepared statement
+          $stmt->bindParam(':contact_name', $visitor_name); // Assign :firstname to $presenter_first_name
+          $stmt->bindParam(':contact_email', $visitor_email);        
+          $stmt->bindParam(':contact_reason', $visitor_reason);     
+          $stmt->bindParam(':contact_comment', $visitor_comment);     
+          $stmt->bindParam(':contact_newsletter', $mailingList);
+          $stmt->bindParam(':contact_more_products', $moreInformation);
+                
+                //EXECUTE the prepared statement
+                $stmt->execute();  
+
+        } catch(PDOException $e) {
+                $message = "There has been a problem. The system administrator has been contacted. Please try again later.";
+    
+                error_log($e->getMessage());            //Delivers a developer defined error message to the PHP log file at c:\xampp/php\logs\php_error_log
+                error_log(var_dump(debug_backtrace()));
+            
+                //Clean up any variables or connections that have been left hanging by this error.      
+            
+        }
         // EMAIL TO CLIENT
 
         $timestamp = date('F j, Y, g:i a');
         $contactEmail = new Email("");  //instantiate
         
         $contactEmail->setRecipient("djschneider1@dmacc.edu");
-        $contactEmail->setSender($inEmail);
+        $contactEmail->setSender($visitor_email);
         $contactEmail->setSubject("Contact Page Programming Project");
-        $contactEmail->setMessage("From: $inFullName  Email: $inEmail  Contact Preference: $inContactReason Message: $inMessage ");
+        $contactEmail->setMessage("From: $visitor_name  Email: $visitor_email  Contact Reason: $visitor_reason Comment: $visitor_comment ");
         $emailStatus = $contactEmail->sendMail(); //create and send email
 
         //CONFIRMATION EMAIL
 
         $contactEmail = new Email("");  //instantiate
         
-        $contactEmail->setRecipient($inEmail);
+        $contactEmail->setRecipient($visitor_email);
         $contactEmail->setSender("djschneider1@dmacc.edu");
         $contactEmail->setSubject("Confirmation");
         $contactEmail->setMessage("Your contact form from: Programming Project PHP Contact Page with Validation has been sent. Thank you for contacting us. Date: $timestamp ");
